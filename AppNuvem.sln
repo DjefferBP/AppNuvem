@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNuvem.Android", "AppNuvem.Android\AppNuvem.Android.csproj", "{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppNuvem", "AppNuvem\AppNuvem.csproj", "{73D72838-4672-4B25-BEB0-F2DD571B87AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9B3E7EE-0B59-417A-AD9A-D6FDDD79897A}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73D72838-4672-4B25-BEB0-F2DD571B87AE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {283D0F37-9C5C-4BCE-BC2A-11D3F6103A9F}
+	EndGlobalSection
+EndGlobal

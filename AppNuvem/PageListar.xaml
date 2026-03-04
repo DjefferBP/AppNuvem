@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppNuvem.PageListar" Title="LISTAGEM">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical" Padding="10">
+            <Label Text="LISTAGEM DE CLIENTES" 
+                   FontSize="40" 
+                   FontAttributes="Bold" 
+                   HorizontalOptions="Center" 
+                   HorizontalTextAlignment="Center"/>
+
+            <ScrollView>
+                <ListView x:Name="lsvPessoas" 
+                          ItemSelected="lsvPessoas_ItemSelected"
+                          HasUnevenRows="True"
+                          >
+                    <ListView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ViewCell >
+                                <StackLayout Orientation="Vertical" Padding="10">
+                                    <Label Text="{Binding nome}" TextColor="Black" FontAttributes="Bold" FontSize="Medium" />
+                                    <StackLayout Orientation="Horizontal" Padding="10">
+                                        <Label Text="{Binding celular}" TextColor="Gray" FontAttributes="Italic" FontSize="Small" />
+                                        <Label Text="{Binding datanasc, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray" FontAttributes="Italic" FontSize="Small" />
+                                    </StackLayout>
+                                    <Frame HeightRequest="20" BackgroundColor="{Binding CorGenero}">
+                                        <Label Text="{Binding genero, StringFormat='GÊNERO: {0}'}" BackgroundColor="White" FontAttributes="Bold" FontSize="Small" />
+                                    </Frame>
+                                </StackLayout>
+
+                            </ViewCell>
+
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="+" x:Name="btnNovo" Priority="0" Order="Primary" Clicked="btnNovo_Clicked" />
+    </ContentPage.ToolbarItems>
+</ContentPage>
