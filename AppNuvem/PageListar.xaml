@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppNuvem.PageListar" Title="LISTAGEM">
+             x:Class="AppNuvem.PageListar" Title="LISTAGEM" >
     <ContentPage.Content>
         <StackLayout Orientation="Vertical" Padding="10">
             <Label Text="LISTAGEM DE CLIENTES" 
@@ -14,22 +14,40 @@
                 <ListView x:Name="lsvPessoas" 
                           ItemSelected="lsvPessoas_ItemSelected"
                           HasUnevenRows="True"
+                          BackgroundColor="#F2F2F2"
+                          SeparatorVisibility="None"
                           >
                     <ListView.ItemTemplate>
 
                         <DataTemplate>
 
                             <ViewCell >
-                                <StackLayout Orientation="Vertical" Padding="10">
-                                    <Label Text="{Binding nome}" TextColor="Black" FontAttributes="Bold" FontSize="Medium" />
-                                    <StackLayout Orientation="Horizontal" Padding="10">
-                                        <Label Text="{Binding celular}" TextColor="Gray" FontAttributes="Italic" FontSize="Small" />
-                                        <Label Text="{Binding datanasc, StringFormat='{0:dd/MM/yyyy}'}" TextColor="Gray" FontAttributes="Italic" FontSize="Small" />
+                                <Frame Padding="0" HasShadow="True" Margin="0, 7" CornerRadius="10" BackgroundColor="White">
+
+                                    <StackLayout Spacing="0">
+
+                                        
+                                        <BoxView HeightRequest="4"
+                                            BackgroundColor="{Binding CorGenero}" />
+
+                                        
+                                        <StackLayout Padding="10">
+                                            <Label Text="{Binding nome}"
+                                               FontAttributes="Bold"
+                                               FontSize="Medium" />
+
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding CelularFormatado}" />
+                                                <Label Text="{Binding datanasc, StringFormat='{0:dd/MM/yyyy}'}" />
+                                            </StackLayout>
+                                            <Label Text="{Binding GeneroDesc}"
+                                               FontAttributes="Bold"
+                                               FontSize="Medium" />
+                                        </StackLayout>
+
                                     </StackLayout>
-                                    <Frame HeightRequest="20" BackgroundColor="{Binding CorGenero}">
-                                        <Label Text="{Binding genero, StringFormat='GÊNERO: {0}'}" BackgroundColor="White" FontAttributes="Bold" FontSize="Small" />
-                                    </Frame>
-                                </StackLayout>
+
+                                </Frame>
 
                             </ViewCell>
 
