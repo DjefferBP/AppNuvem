@@ -1,12 +1,66 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="AppNuvem.PageCadastrar">
+             x:Class="AppNuvem.PageCadastrar" Title="CADASTRO">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Orientation="Vertical" Padding="20" Spacing="10">
+            
+            <StackLayout Orientation="Horizontal" >
+                <StackLayout Orientation="Vertical" >
+                    <Label Text="Nome" 
+                           FontSize="Medium" 
+                           FontAttributes="Bold" 
+                           HorizontalTextAlignment="Start"
+                           TextColor="DarkSlateBlue"/>
+                    
+                    <Entry 
+                           Placeholder="Insira seu nome" 
+                           FontSize="Medium"
+                           x:Name="txtNome"/>
+                </StackLayout>
+
+                <StackLayout Orientation="Vertical" >
+                    <Label Text="Telefone" 
+                           FontSize="Medium" 
+                           FontAttributes="Bold" 
+                           HorizontalTextAlignment="Start"
+                           TextColor="DarkSlateBlue"/>
+                    
+                    <Entry Keyboard="Telephone" 
+                           Placeholder="Insira seu número de telefone" 
+                           FontSize="Default" x:Name="txtTelefone" 
+                           WidthRequest="200"/>
+                    
+                </StackLayout>
+            </StackLayout>
+            <Label Text="Data de nascimento" 
+                   FontSize="Medium" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="DarkSlateBlue"/>
+            
+            <DatePicker x:Name="dpDataNasc" 
+                        Format="dd-MM-yyyy" />
+            
+            <Label Text="Gênero" 
+                   FontSize="Medium" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Start"
+                   TextColor="DarkSlateBlue"/>
+                
+            <Picker x:Name="txtGenero">
+                <Picker.Items>
+                    <x:String>Masculino</x:String>
+                    <x:String>Feminino</x:String>
+                    <x:String>Outro</x:String>
+                </Picker.Items>
+            </Picker>
+            <Button Text="CADASTRAR" x:Name="btnCadastar" 
+                    Clicked="btnCadastar_Clicked" 
+                    BackgroundColor="DarkBlue" 
+                    TextColor="White"
+                    FontAttributes="Bold" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

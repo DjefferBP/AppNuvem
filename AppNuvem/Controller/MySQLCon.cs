@@ -5,6 +5,7 @@ using System.Data;
 using MySqlConnector;
 using AppNuvem.Models;
 using Xamarin.Forms;
+using System.Text.RegularExpressions;
 
 namespace AppNuvem.Controller
 {
@@ -57,20 +58,22 @@ namespace AppNuvem.Controller
 
         public static void CriarCliente(Pessoa cliente)
         {
+            
+            string celular_formatado = Regex.Replace(cliente.celular, @"\D", "");
             MySqlConnection con = GetConnection();
-            string sql = "INSERT INTO clientes (nome, celular, datanasc, genero) VALUES(@nome, @celular, @datanac, @genero)";
+            string sql = "INSERT INTO clientes (nome, celular, datanasc, genero) VALUES(@nome, @celular, @datanasc, @genero)";
             MySqlCommand cmd = new MySqlCommand( sql, con);
             try
             {
                 con.Open();
                 cmd.Parameters.AddWithValue("@nome", cliente.nome);
-                cmd.Parameters.AddWithValue("celular", cliente.celular);
-                cmd.Parameters.AddWithValue("datanas", cliente.datanasc.Date);
+                cmd.Parameters.AddWithValue("celular", celular_formatado);
+                cmd.Parameters.AddWithValue("datanasc", cliente.datanasc.Date);
                 cmd.Parameters.AddWithValue("genero", cliente.genero);
 
                 cmd.ExecuteNonQuery();
-                
-            }
+				Application.Current.MainPage.DisplayAlert("Erro", "Cliente cadastrado com sucesso!", "OK");
+			}
             catch (MySqlException sqlError)
             {
 				Application.Current.MainPage.DisplayAlert("Erro", $"Erro do SQL: {sqlError.Message}", "OK");
@@ -94,6 +97,7 @@ namespace AppNuvem.Controller
 				
 
 				cmd.ExecuteNonQuery();
+				Application.Current.MainPage.DisplayAlert("Erro", "Cliente excluído com sucesso!", "OK");
 
 			}
 			catch (MySqlException sqlError)
@@ -109,20 +113,28 @@ namespace AppNuvem.Controller
 
 		public static void AtualizarPessoa(Pessoa cliente)
 		{
+			if (String.IsNullOrEmpty(cliente.nome))
+			{
+				Application.Current.MainPage.DisplayAlert("Erro", "O nome não deve ser vazio", "OK");
+				return;
+			}
+
+			string celular_formatado = Regex.Replace(cliente.celular, @"\D", "");
 			MySqlConnection con = GetConnection();
-			string sql = "UPDATE FROM clientes SET nome=@nome, celular=@celular, datanasc=@datanasc, genero=@genero WHERE id = @id";
+			string sql = "UPDATE clientes SET nome=@nome, celular=@celular, datanasc=@datanasc, genero=@genero WHERE id = @id";
 			MySqlCommand cmd = new MySqlCommand(sql, con);
 			try
 			{
 				con.Open();
 				cmd.Parameters.AddWithValue("@id", cliente.id);
 				cmd.Parameters.AddWithValue("@nome", cliente.nome);
-				cmd.Parameters.AddWithValue("@celular", cliente.celular);
+				cmd.Parameters.AddWithValue("@celular", celular_formatado);
 				cmd.Parameters.AddWithValue("@datanasc", cliente.datanasc);
 				cmd.Parameters.AddWithValue("@genero", cliente.genero);
 
 
 				cmd.ExecuteNonQuery();
+				Application.Current.MainPage.DisplayAlert("Erro", "Cliente atualizado com sucesso!", "OK");
 
 			}
 			catch (MySqlException sqlError)
@@ -134,6 +146,14 @@ namespace AppNuvem.Controller
 				Application.Current.MainPage.DisplayAlert("Erro", $"Ocorreu um erro ao excluir o cliente {cliente.nome}: {ex.Message}", "OK");
 			}
 			finally { con.Close(); }
+		}
+		public static bool campo_esta_vazio(string nome, string celular, DateTime data_nasc, string genero)
+		{
+			if (string.IsNullOrEmpty(nome) &&
+			string.IsNullOrEmpty(celular) &&
+			string.IsNullOrEmpty(genero) &&
+			data_nasc == null) return true;
+			return false;
 		}
 	}
 }
