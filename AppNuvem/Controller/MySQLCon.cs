@@ -147,13 +147,16 @@ namespace AppNuvem.Controller
 			}
 			finally { con.Close(); }
 		}
-		public static bool campo_esta_vazio(string nome, string celular, DateTime data_nasc, string genero)
+		public static bool CampoEstaVazio(string nome, string celular, DateTime data_nasc, string genero)
 		{
-			if (string.IsNullOrEmpty(nome) &&
-			string.IsNullOrEmpty(celular) &&
-			string.IsNullOrEmpty(genero) &&
-			data_nasc == null) return true;
+			if (string.IsNullOrEmpty(nome) || string.IsNullOrEmpty(celular) || string.IsNullOrEmpty(genero) || data_nasc == null) return true;
 			return false;
+		}
+
+		public static bool DataEValida(DateTime data_nasc)
+		{
+			if (data_nasc >= DateTime.Now.Date) return false;
+			return true;
 		}
 	}
 }

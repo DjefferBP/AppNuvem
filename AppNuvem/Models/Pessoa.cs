@@ -57,5 +57,13 @@ namespace AppNuvem.Models
                 return celular;
             }
         }
+
+        public int Idade 
+        {
+            get
+            {
+                return DateTime.Now.Year - datanasc.Year;
+            }
+        }
     }
 }

@@ -21,6 +21,29 @@ namespace AppNuvem
 		private void btnCadastar_Clicked(object sender, EventArgs e)
 		{
 			DateTime datanasc = dpDataNasc.Date;
+			if (!MySQLCon.DataEValida(datanasc))
+			{
+				DisplayAlert("Erro", "A data selecionada deve ser menor que a data atual!", "OK");
+				LimparCampos();
+				return;
+			}
+			string gen = "";
+			if (txtGenero.SelectedItem != null)
+			{
+				gen = txtGenero.SelectedItem.ToString();
+			}
+			if (MySQLCon.CampoEstaVazio(txtNome.Text, txtTelefone.Text, dpDataNasc.Date, gen))
+			{
+				DisplayAlert("Erro", "Insira os campos corretamente!", "OK");
+				LimparCampos();
+				return;
+			}
+			if (txtTelefone.Text.Length < 11 || txtTelefone.Text.Length > 11)
+			{
+				DisplayAlert("Erro", "O telefone deve conter 10-11 digitos!", "OK");
+				LimparCampos();
+				return;
+			}
 			string genero = txtGenero.SelectedItem.ToString();
 			if (genero == "Masculino")
 			{
@@ -43,5 +66,12 @@ namespace AppNuvem
 			});
 			Navigation.PopAsync();
         }
-    }
+		private void LimparCampos()
+		{
+			txtGenero.SelectedItem = null;
+			txtNome.Text = string.Empty;
+			txtTelefone.Text = string.Empty;
+
+		}
+	}
 }

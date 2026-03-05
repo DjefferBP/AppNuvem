@@ -35,6 +35,9 @@
                                             <Label Text="{Binding nome}"
                                                FontAttributes="Bold"
                                                FontSize="Medium" />
+                                            <Label Text="{Binding Idade, StringFormat='{0} anos de idade'}"
+                                               FontAttributes="Bold"
+                                               FontSize="Small" />
 
                                             <StackLayout Orientation="Horizontal">
                                                 <Label Text="{Binding CelularFormatado}" />
